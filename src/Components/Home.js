@@ -51,6 +51,10 @@ class Home extends Component {
                             APIAccess.imageMetrics(token, img).then((response) => {
                                 console.log("Test image upload");
                                 console.log(response.json);
+                                APIAccess.emailAlert(token).then((response) => {
+                                    console.log("Test email alert");
+                                    console.log(response.json);
+                                });
                             });
                         });
                     });

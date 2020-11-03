@@ -1,5 +1,5 @@
-// const SERVICE_URL = 'https://cognaflask.herokuapp.com';
-const SERVICE_URL = 'http://localhost:5000';
+const SERVICE_URL = 'https://cognaflask.herokuapp.com';
+// const SERVICE_URL = 'http://localhost:5000';
 export default {
     // authenticate
     authenticate(username, password) {
@@ -151,6 +151,27 @@ export default {
                 "nine": nine,
                 "ten": ten
             }),
+        };
+        return fetch(URL, payload).then(response => 
+            response.json().then(json => ({
+                code: response.status,
+                json: json,})).catch(error => ({
+                code: response.status,
+                json: error}))).catch(error => alert(error));
+    },
+
+    // emailAlert
+    emailAlert(token) {
+        const URL = `${SERVICE_URL}/emailalert`;
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            Authorization: `Bearer ${token}`,
+        };
+        const payload = {
+            method: 'GET',
+            headers
         };
         return fetch(URL, payload).then(response => 
             response.json().then(json => ({
